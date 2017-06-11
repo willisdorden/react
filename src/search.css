@@ -1,0 +1,12 @@
+input{
+    min-width: 500px
+}
+
+.container{
+    border: 1px solid black;
+
+}
+
+.panel-heading{
+    border: 1px solid black;
+}
