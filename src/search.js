@@ -3,7 +3,10 @@
  */
 
 import React, { Component } from 'react';
+import Results from './Results.js'
 import './search.css';
+var axios = require("axios");
+
 
 class Search extends Component{
     constructor(props) {
@@ -15,25 +18,26 @@ class Search extends Component{
         };
     }
     handleTopic= (e) => {
-    this.setState
-        ({ topic: e.target.value});
+    this.setState({ topic: e.target.value});
     };
 
     handlestartYear =(e) => {
-    this.setState
-    ({year: e.target.value})
+    this.setState({year: e.target.value})
 };
     handleendYear = (e) =>{
-        this.setState
-        ({endYear: e.target.value})
+        this.setState({endYear: e.target.value})
 };
-    componentDidUpdate =()=>{
-          this.nyTime()
-    };
+    handleSubmit =(event) => {
+    // prevent the HTML from trying to submit a form if the user hits "Enter" instead of
+    // clicking the button
+    event.preventDefault();
 
+    // Set the parent to have the search term
+    this.props.setTerm(this.state.term);
+    this.setState({ term: "" });
+};
 
-
-    render(){
+                render(){
         return(
             <div className="container">
                 <div className="col-md-12">
@@ -75,7 +79,13 @@ class Search extends Component{
                         </div>
                     </div>
                         <div className="button">
-                            <button className ="btn btn primary btn-lg" onClick={this.handleClick}>Search</button>
+                            <button
+                                className ="btn btn primary btn-lg"
+                                type ="submit"
+                                >Search</button>
+                        </div>
+                        <div>
+                           <Search onSubmit={this.handleSubmit}/>
                         </div>
                     </div>
                 </div>

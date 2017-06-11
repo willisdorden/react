@@ -2,9 +2,9 @@
  * Created by admin on 6/10/17.
  */
 
-import React, { Component } from 'react';
+importReact, { Component } from 'react';
 import request from 'request';
-import Search from '.../src/search.js';
+import Search from '../src/search';
 
 nyTime = () => {
     request("https://www.nytimes.com/", function(error, response, html){

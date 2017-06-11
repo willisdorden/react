@@ -16,8 +16,9 @@ class Results extends Component {
                     <h3 className="panel-title text-center">Results</h3>
                 </div>
                 <div className="panel-body text-center">
-
+                    <p> events: {this.props.events}</p>
                 </div>
+
             </div>
             </div>
             </div>
