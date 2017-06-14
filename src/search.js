@@ -3,12 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import Results from './Results.js'
 import './search.css';
-var axios = require("axios");
 
 
-class Search extends Component{
+class NySearch extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -17,27 +15,27 @@ class Search extends Component{
             endYear: ""
         };
     }
-    handleTopic= (e) => {
+    handleTopic (e)  {
     this.setState({ topic: e.target.value});
-    };
+    }
 
-    handlestartYear =(e) => {
+    handlestartYear (e) {
     this.setState({year: e.target.value})
-};
-    handleendYear = (e) =>{
+}
+    handleendYear (e) {
         this.setState({endYear: e.target.value})
-};
-    handleSubmit =(event) => {
+}
+    handleSubmit (event)  {
     // prevent the HTML from trying to submit a form if the user hits "Enter" instead of
     // clicking the button
     event.preventDefault();
 
     // Set the parent to have the search term
-    this.props.setTerm(this.state.term);
+    this.props.setTerm(this.state);
     this.setState({ term: "" });
-};
+}
 
-                render(){
+    render(){
         return(
             <div className="container">
                 <div className="col-md-12">
@@ -49,44 +47,60 @@ class Search extends Component{
                     <div className="panel-body">
                     <div className="Topic">
                     <h3>Topic</h3>
+                        <form className="button" onSubmit={this.handleSubmit}>
                     <div className="input-group">
+                        <label>
                         <input value={this.state.topic}
                                onChange={this.handleTopic}
                                type="text"
                                className="form-control"
                                placeholder="Topic"/>
+                        </label>
+                        <input type="submit" value="Submit" />
                     </div>
-                </div>
+
                     <div className="Startyear">
                         <h3>Start Year</h3>
                         <div className="input-group">
+                            <label>
+
+
                             <input value={this.state.year}
                                    onChange={this.handlestartYear}
                                    type="text"
                                    className="form-control"
                                    placeholder="Start Year"/>
+                            </label>
+                            <input type="submit" value="Submit" />
+
                         </div>
-                    </div>
+
                     <div className="Endyear">
                         <h3>End Year</h3>
                         <div className="input-group">
+                            <label>
                             <input
                                 value={this.state.endYear}
                                 onChange={this.handleendYear}
                                 type="text"
                                 className="form-control"
                                 placeholder="End Year"/>
+                            </label>
+                            <input type="submit" value="Submit" />
                         </div>
-                    </div>
+                        </div>
+
                         <div className="button">
                             <button
                                 className ="btn btn primary btn-lg"
                                 type ="submit"
                                 >Search</button>
                         </div>
-                        <div>
-                           <Search onSubmit={this.handleSubmit}/>
-                        </div>
+                    </div>
+                        </form>
+                    </div>
+
+
                     </div>
                 </div>
             </div>
@@ -97,4 +111,4 @@ class Search extends Component{
 
 
 
-export default Search;
+export default NySearch;

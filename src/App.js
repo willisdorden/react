@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './search.js'
+import NySearch from './search.js'
 import Results from './Results.js'
 import SavedArticles from './SavedArticles.js'
 import helpers from './util/helper'
 
 class App extends Component {
-    getInitialState =() => {
-    return { searchTerm: "", results: "" };
-};
-    componentDidUpdate =(prevProps, prevState)=> {
-        if (prevState.searchTerm !== this.state.searchTerm) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            results: "",
+            topic: "",
+            year:"",
+            endYear:""
+        };
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        if (prevState.topic !== this.state.topic) {
             console.log("UPDATED");
 
-            helpers.runQuery(this.state.searchTerm).then ( (data) => {
+            helpers.runQuery(this.state).then ( (data) => {
                 if (data !== this.state.results) {
                     console.log("HERE");
                     console.log(data);
@@ -23,12 +30,12 @@ class App extends Component {
 
                 // This code is necessary to bind the keyword "this" when we say this.setState
                 // to actually mean the component itself and not the runQuery function.
-            }).bind(this)
+            })
         }
-    };
-    setTerm =(term) => {
-    this.setState({ searchTerm: term });
-};
+    }
+    setTerm ({topic, year, endYear })  {
+        this.setState({ topic, year, endYear });
+    }
 
     render() {
     return (
@@ -38,7 +45,7 @@ class App extends Component {
                 <h3>Search for and annotate article of interest</h3>
         </div>
           <div>
-              <Search  setTerm={this.setTerm} /> />
+              <NySearch  setTerm={this.setTerm} />
           </div>
           <div>
           <Results events={this.state.results}  />
