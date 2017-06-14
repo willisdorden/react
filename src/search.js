@@ -47,16 +47,15 @@ class NySearch extends Component{
                     <div className="panel-body">
                     <div className="Topic">
                     <h3>Topic</h3>
-                        <form className="button" onSubmit={this.handleSubmit}>
+                        <form className="button" onSubmit={this.handleSubmit.bind(this)}>
                     <div className="input-group">
                         <label>
                         <input value={this.state.topic}
-                               onChange={this.handleTopic}
+                               onChange={this.handleTopic.bind(this)}
                                type="text"
                                className="form-control"
                                placeholder="Topic"/>
                         </label>
-                        <input type="submit" value="Submit" />
                     </div>
 
                     <div className="Startyear">
@@ -66,12 +65,11 @@ class NySearch extends Component{
 
 
                             <input value={this.state.year}
-                                   onChange={this.handlestartYear}
+                                   onChange={this.handlestartYear.bind(this)}
                                    type="text"
                                    className="form-control"
-                                   placeholder="Start Year"/>
+                                   placeholder="YYYYMMDD"/>
                             </label>
-                            <input type="submit" value="Submit" />
 
                         </div>
 
@@ -81,12 +79,11 @@ class NySearch extends Component{
                             <label>
                             <input
                                 value={this.state.endYear}
-                                onChange={this.handleendYear}
+                                onChange={this.handleendYear.bind(this)}
                                 type="text"
                                 className="form-control"
-                                placeholder="End Year"/>
+                                placeholder="YYYYMMDD"/>
                             </label>
-                            <input type="submit" value="Submit" />
                         </div>
                         </div>
 

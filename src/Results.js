@@ -16,7 +16,10 @@ class Results extends Component {
                     <h3 className="panel-title text-center">Results</h3>
                 </div>
                 <div className="panel-body text-center">
-                    <p> events: {this.props.events}</p>
+                   <li>{this.props.events} <button
+                       className ="btn btn primary btn-lg"
+                        type= "submit">Save
+                    </button>  </li>
                 </div>
 
             </div>

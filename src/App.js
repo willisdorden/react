@@ -20,17 +20,22 @@ class App extends Component {
         if (prevState.topic !== this.state.topic) {
             console.log("UPDATED");
 
-            helpers.runQuery(this.state).then ( (data) => {
-                if (data !== this.state.results) {
-                    console.log("HERE");
-                    console.log(data);
+            helpers.runQuery(this.state)
+                .then(data => {
+                    if (data !== this.state.results) {
+                        console.log("HERE");
+                        // console.log(data.data.response.docs[1].headline.main);
+                       var searchData = data.data.response.docs ;
+                       console.log(searchData);
+                       for (var i = 0; i<searchData.length; i++){
+                           this.setState({results: searchData[i].headline.main});
+                       }
 
-                    this.setState({results: data});
-                }
-
-                // This code is necessary to bind the keyword "this" when we say this.setState
-                // to actually mean the component itself and not the runQuery function.
-            })
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
     setTerm ({topic, year, endYear })  {
@@ -45,10 +50,10 @@ class App extends Component {
                 <h3>Search for and annotate article of interest</h3>
         </div>
           <div>
-              <NySearch  setTerm={this.setTerm} />
+              <NySearch  setTerm={this.setTerm.bind(this)} />
           </div>
           <div>
-          <Results events={this.state.results}  />
+          <Results events = {this.state.results}  />
           </div>
           <div>
               <SavedArticles />
