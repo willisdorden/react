@@ -9,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            results: "",
+            results: [],
             topic: "",
             year:"",
             endYear:""
@@ -27,9 +27,8 @@ class App extends Component {
                         // console.log(data.data.response.docs[1].headline.main);
                        var searchData = data.data.response.docs ;
                        console.log(searchData);
-                       for (var i = 0; i<searchData.length; i++){
-                           this.setState({results: searchData[i].headline.main});
-                       }
+                           this.setState({results: searchData});
+
 
                     }
                 })
@@ -41,6 +40,8 @@ class App extends Component {
     setTerm ({topic, year, endYear })  {
         this.setState({ topic, year, endYear });
     }
+
+
 
     render() {
     return (

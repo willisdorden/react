@@ -6,6 +6,17 @@ import React, { Component } from 'react';
 import './Results.css';
 
 class Results extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            events: []
+        };
+    }
+    componentWillReceiveProps (props) {
+    this.setState({ events: this.props.events});
+    console.log(props);
+}
+
     // Here we describe this component's render method
     render() {
         return (
@@ -16,10 +27,17 @@ class Results extends Component {
                     <h3 className="panel-title text-center">Results</h3>
                 </div>
                 <div className="panel-body text-center">
-                   <li>{this.props.events} <button
-                       className ="btn btn primary btn-lg"
-                        type= "submit">Save
-                    </button>  </li>
+                    <ul>
+
+                        {
+                            this.state.events.map((event) =>{
+                                console.log(event);
+                            return <li className ="btn btn primary btn-lg" >{event.headline.main}</li>
+                             })
+                        }
+
+
+                    </ul>
                 </div>
 
             </div>
