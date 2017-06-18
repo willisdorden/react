@@ -2,12 +2,3 @@
  * Created by admin on 6/10/17.
  */
 
-importReact, { Component } from 'react';
-import request from 'request';
-import Search from '../src/search';
-
-nyTime = () => {
-    request("https://www.nytimes.com/", function(error, response, html){
-
-    }
-};
