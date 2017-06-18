@@ -9,12 +9,13 @@ class Results extends Component {
     constructor(props) {
         super(props);
         this.state={
-            events: []
+            data: props.events || []
         };
     }
-    componentWillReceiveProps (props) {
-    this.setState({ events: this.props.events});
-    console.log(props);
+    componentWillReceiveProps (Nextprops) {
+        console.log(Nextprops.events);
+    if(this.state.data !== Nextprops.events)
+        this.setState({data : Nextprops.events});
 }
 
     // Here we describe this component's render method
@@ -30,10 +31,14 @@ class Results extends Component {
                     <ul>
 
                         {
-                            this.state.events.map((event) =>{
-                                console.log(event);
-                            return <li className ="btn btn primary btn-lg" >{event.headline.main}</li>
-                             })
+                            this.state.data.map((event) => {
+                            return (
+                             <li key ={event._id} className="btn btn-primary btn-lg">
+                                 {event.headline.main}
+                                 <button className="btn btn-primary btn-lg" type="submit">Save</button>
+                             </li>
+                            )
+                        })
                         }
 
 
